@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access important financial data here.">
+    <meta name="keywords" content="stock market, data, chart, finance, company, trade">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <title>Stock Market Data</title>
+</head>
+<body>
+    <h1 id="document-title">Access Stock Market Data</h1>
+    <form id="form">
+        <input id="input" type="text" placeholder="Enter Ticker Symbol..." spellcheck="false">
+        <button id="submit" type="submit">Submit</button>
+    </form>
+    <div id="chart"></div>
+
+    <section>
+        <h2>Company Data</h2>
+    </section>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
