@@ -1,5 +1,6 @@
 :root {
     --default-text-color: rgb(105, 105, 105);
+    --default-title-color: rgb(51, 37, 144);
 }
 
 * {
@@ -21,14 +22,15 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
+    color: var(--default-title-color);
 }
 
 #document-title {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
-#chart {
-    max-width: 85vw;
+#stock-chart,
+#assets-chart {
     margin: auto;
 }
 
