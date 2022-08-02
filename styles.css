@@ -61,3 +61,14 @@ input {
     margin-left: 7vw;
     margin-right: 7vw;
 }
+
+#share-price,
+#identification {
+    font-size: 2rem;
+    margin-left: 7vw;
+}
+
+#identification {
+    margin-bottom: 0;
+    font-size: 2.5rem;
+}
