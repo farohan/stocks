@@ -34,8 +34,7 @@ function getCompanyData() {
         const marketCap = parseInt(data.MarketCapitalization);
         const numOfShares = parseInt(data.SharesOutstanding);
         const stockPrice = marketCap / numOfShares;
-        console.log(stockPrice);
-        sharePrice.innerHTML = `Current Share Price: $${Math.round(stockPrice)}`;
+        sharePrice.innerHTML = `Current Share Price: $${stockPrice.toFixed(2)}`;
 
         identification.innerHTML = `
         ${data.Name} (${data.Exchange}: ${data.Symbol})
@@ -117,29 +116,39 @@ function getStockData() {
 
     fetch(url).then((response) => {
         return response.json();
-    }).then((data) => {
-        console.log(data['Monthly Adjusted Time Series']);
-    })
+    }).then((info) => {
+        const points = info['Monthly Adjusted Time Series'];
+        const numOfXPoints = Object.keys(points).length;
+        console.log(points);
 
-    const xArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    const yArray = [2, 4, 7, 3, 10, 12, 15, 14, 25, 35, 27, 32, 36, 42, 75];
-    
-    //Defining data
-    const data = [{
-        x: xArray,
-        y: yArray,
-        mode: 'lines'
-    }];
-    
-    //Defining layout
-    const layout = {
-        xaxis: {range: [1, 15], title: 'Time'},
-        yaxis: {range: [0, 75], title: 'Price'},
-        title: 'Price over Time'
-    };
-    
-    //Display new chart
-    Plotly.newPlot('stock-chart', data, layout);
+        let xArray = [];
+        
+        for (let i = 1; i <= numOfXPoints; i++) {
+            xArray.push(i);
+        }
+
+        let yArray = [];
+
+        for (let i = 0; i <= numOfXPoints; i++) {
+            const specificPoint = Object.values(points)[i]['5. adjusted closed'];
+            console.log(specificPoint);
+            yArray.push(specificPoint);
+        }
+
+        const data = [{
+            x: xArray,
+            y: yArray,
+            mode: 'lines'
+        }];
+        
+        const layout = {
+            xaxis: {range: [1, xArray.length], title: 'Time'},
+            yaxis: {range: [0, yArray.length], title: 'Price'},
+            title: 'Stock Chart (Monthly)'
+        };
+        
+        Plotly.newPlot('stock-chart', data, layout);
+    })
 }
 
 submitBtn.addEventListener('click', getCompanyData);
